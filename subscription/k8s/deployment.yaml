@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: subscription-deployment
+  labels:
+    app: subscription
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: subscription
+  template:
+    metadata:
+      labels:
+        app: subscription
+    spec:
+      containers:
+      - name: subscription
+        image: coconut33/subscription:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: CUSTOMERS_URL 
+          value: "http://customer:8084/customers/name/"
+        - name: TARIFS_URL 
+          value: "http://tarif:8085/tarifs/name/"

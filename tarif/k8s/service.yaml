@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: tarif
+  labels:
+    app: tarif
+spec:
+  ports:
+  - port: 8085
+    protocol: TCP
+  selector:
+    app: tarif
